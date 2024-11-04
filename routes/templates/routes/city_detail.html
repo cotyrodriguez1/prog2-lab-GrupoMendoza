@@ -1,0 +1,31 @@
+{% extends 'routes/base.html' %}
+
+{% block title %}{{ ciudad.name }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>{{ ciudad.name }}</h1>
+        
+        <h3>Rutas desde {{ ciudad.name }}:</h3>
+        <ul class="list-group mb-3">
+            {% for ruta in rutas_salida %}
+                <li class="list-group-item">
+                    Hacia {{ ruta.end_city.name }} ({{ ruta.distance }} km)
+                </li>
+            {% empty %}
+                <li class="list-group-item">No hay rutas de salida.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Rutas hacia {{ ciudad.name }}:</h3>
+        <ul class="list-group mb-3">
+            {% for ruta in rutas_llegada %}
+                <li class="list-group-item">
+                    Desde {{ ruta.start_city.name }} ({{ ruta.distance }} km)
+                </li>
+            {% empty %}
+                <li class="list-group-item">No hay rutas de llegada.</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

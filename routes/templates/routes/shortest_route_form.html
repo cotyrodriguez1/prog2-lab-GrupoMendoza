@@ -1,0 +1,56 @@
+{% extends 'routes/base.html' %}
+
+{% block title %}Shortest Route{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Encontrar la ruta más corta</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <!-- Selección de la ciudad de origen -->
+        <div class="mb-3">
+            <label for="start_city" class="form-label">Elegir la ciudad de origen:</label>
+            <select id="start_city" name="start_city" class="form-select">
+                {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.id }}">{{ ciudad.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Selección de la ciudad de destino -->
+        <div class="mb-3">
+            <label for="end_city" class="form-label">Elegir la ciudad de destino:</label>
+            <select id="end_city" name="end_city" class="form-select">
+                {% for ciudad in ciudades %}
+                    <option value="{{ ciudad.id }}">{{ ciudad.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Botón para calcular la ruta más corta -->
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Encontrar la ruta más corta</button>
+        </div>
+    </form>
+
+    <!-- Mensajes de error o éxito -->
+    {% if error_message %}
+        <div class="alert alert-danger mt-3">{{ error_message }}</div>
+    {% endif %}
+    
+    {% if path %}
+        <div class="alert alert-success mt-3">
+            <h4>Shortest Route:</h4>
+            <ul class="list-group">
+                {% for city in path %}
+                    <li class="list-group-item">{{ city.name }}</li>
+                {% endfor %}
+            </ul>
+            <p>Total distance: {{ distance }} km</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+d

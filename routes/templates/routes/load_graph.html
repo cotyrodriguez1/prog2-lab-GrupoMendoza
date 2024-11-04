@@ -1,0 +1,29 @@
+{% extends 'routes/base.html' %}
+{% block title %}Cargar Rutas{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Cargar Rutas</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="graph_text" class="form-label">Cargá las rutas directamente (como listas de adyacencia):</label>
+            <textarea id="graph_text" name="graph_text" rows="10" class="form-control" placeholder="id_ciudad1 id_ciudad2 distancia..."></textarea>
+        </div>
+        
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Cargar Rutas</button>
+        </div>
+    </form>
+    
+    <!-- Mensajes de error o éxito -->
+    {% if error_message %}
+        <div class="alert alert-danger mt-3">{{ error_message }}</div>
+    {% endif %}
+    
+    {% if success_message %}
+        <div class="alert alert-success mt-3">{{ success_message }}</div>
+    {% endif %}
+</div>
+{% endblock %}

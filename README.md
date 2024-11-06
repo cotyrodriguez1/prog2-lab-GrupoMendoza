@@ -19,10 +19,16 @@ La Clase Dijkstra aún no se ha implementado.
 **3. Planificación de Tareas Pendientes**
 
 Implementación de la Clase Dijkstra:
+
 Objetivo: Desarrollar la clase Dijkstra para incorporar algoritmos de búsqueda de rutas óptimas.
+
 Subtareas:
+
 Diseñar la estructura de la clase.
+
 Implementar métodos para el cálculo de rutas.
+
 Integrar la clase con los modelos existentes de City y Route.
+
 Realizar pruebas unitarias para asegurar la precisión y eficiencia del algoritmo.
 

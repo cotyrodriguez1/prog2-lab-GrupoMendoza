@@ -1,4 +1,5 @@
 #***Informe del Progreso del Proyecto***#
+
 **1. Estado Actual**
 Funcionalidades Completas:
 

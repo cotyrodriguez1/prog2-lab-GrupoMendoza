@@ -1,23 +1,85 @@
+# Importa el módulo heapq, que proporciona funciones para implementar una cola de prioridad
+# Esta cola se usa en el algoritmo de Dijkstra para seleccionar la ciudad más corta.
 import heapq
+
+# Importa los modelos City y Route, que contienen las ciudades y las rutas entre ellas.
 from .models import City, Route
 
+# Define la función dijkstra que calcula la distancia más corta desde una ciudad de inicio a todas las demás ciudades.
 def dijkstra(start_city):
-    distances = {start_city:0}
-    previous_cities = {start_city:None}
-    # completar
+    
+    # Obtiene todas las ciudades de la base de datos
+    ciudades = City.objects.all()
+
+    # Inicializa un diccionario de distancias a infinito para todas las ciudades
+    # y establece la distancia de la ciudad de inicio a 0
+    distances = {ciudad: float('inf') for ciudad in ciudades}
+    distances[start_city] = 0
+    
+    # Inicializa un diccionario de ciudades anteriores, que se usará para reconstruir el camino más corto
+    previous_cities = {ciudad: None for ciudad in ciudades}
+    
+    # Inicializa una lista de prioridades (columna de prioridad) con la ciudad de inicio
+    visitar = []
+    heapq.heappush(visitar, (0, start_city))
+
+    # Mientras haya ciudades por visitar
+    while visitar != []:
+        # Va a extraer la ciudad con la distancia más corta
+        distancia_actual, ciudad_actual = heapq.heappop(visitar)
+
+        # Si la distancia extraída es mayor que la distancia registrada para la ciudad actual, 
+        # significa que ya se ha procesado esta ciudad, así que la ignoramos.
+        if distancia_actual > distances[ciudad_actual]:
+            continue
+
+        # Busca todas las rutas que parten de la ciudad actual
+        rutas = Route.objects.filter(start_city=ciudad_actual)
+
+        # Recorre todas las rutas de la ciudad actual
+        for ruta in rutas:
+            # Encuentra la ciudad vecina a la que llega la ruta
+            vecino = ruta.end_city
+            # Calcula la nueva distancia para llegar a la ciudad vecina
+            nueva_distancia = distancia_actual + ruta.distance
+
+            # Si la nueva distancia es más corta que la registrada para la ciudad vecina, actualízala
+            if nueva_distancia < distances[vecino]:
+                distances[vecino] = nueva_distancia
+                # Guarda la ciudad actual como la ciudad anterior de la vecina
+                previous_cities[vecino] = ciudad_actual
+                # Añade la ciudad vecina a la cola de prioridad con su nueva distancia
+                heapq.heappush(visitar, (nueva_distancia, vecino))
+
+    # Devuelve dos diccionarios:
+    # - distances: contiene las distancias mínimas desde la ciudad de inicio a todas las demás ciudades
+    # - previous_cities: contiene la ciudad anterior para cada ciudad en el camino más corto
     return distances, previous_cities
 
+# Define la función get_shortest_path que utiliza el algoritmo de Dijkstra para encontrar el camino más corto
 def get_shortest_path(start_city, end_city):
+    # Llama a la función dijkstra para obtener las distancias y las ciudades anteriores
     distances, previous_cities = dijkstra(start_city)
+
+    # Inicializa una lista vacía para almacenar el camino más corto
     path = []
+    
+    # Comienza desde la ciudad de destino
     city = end_city
 
+    # Mientras haya una ciudad anterior para la ciudad actual, reconstruye el camino
     while previous_cities[city]:
+        # Inserta la ciudad al inicio del camino
         path.insert(0, city)
+        # Se mueve a la ciudad anterior
         city = previous_cities[city]
+    
+    # Inserta la ciudad de inicio al principio del camino
     path.insert(0, city)
 
+    # Devuelve el camino más corto y la distancia total desde la ciudad de inicio a la ciudad de destino
     return path, distances[end_city]
+
 
 class ArbolBinarioBusqueda: # Define la clase para representar un Árbol Binario de Búsqueda.
 

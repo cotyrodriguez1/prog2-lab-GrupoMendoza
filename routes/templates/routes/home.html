@@ -3,13 +3,14 @@
 {% block title %}Lista de Ciudades{% endblock %}
 
 {% block content %}
-    <h1>Ciudades</h1>
+<h1>Ciudades</h1>
     
-    <ul class="list-group">
-        {% for ciudad in ciudades %}
-            <li class="list-group-item"><a href="/city/{{ciudad.id}}">{{ ciudad.name }}</a> </li>
-        {% empty %}
-            <li class="list-group-item">No hay ciudades disponibles.</li>
-        {% endfor %}
-    </ul>
+<ul class="list-group">
+    {% for ciudad in ciudades %}
+        <li class="list-group-item"><a href="/city/{{ciudad.id}}">{{ ciudad.name }}</a> </li>
+    {% empty %}
+        <li class="list-group-item">No hay ciudades disponibles.</li>
+    {% endfor %}
+</ul> 
+ 
 {% endblock %}

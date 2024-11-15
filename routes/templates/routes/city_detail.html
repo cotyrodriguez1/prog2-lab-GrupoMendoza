@@ -3,29 +3,46 @@
 {% block title %}{{ ciudad.name }}{% endblock %}
 
 {% block content %}
-    <div class="container mt-5">
-        <h1>{{ ciudad.name }}</h1>
-        
-        <h3>Rutas desde {{ ciudad.name }}:</h3>
-        <ul class="list-group mb-3">
-            {% for ruta in rutas_salida %}
-                <li class="list-group-item">
-                    Hacia {{ ruta.end_city.name }} ({{ ruta.distance }} km)
-                </li>
-            {% empty %}
-                <li class="list-group-item">No hay rutas de salida.</li>
-            {% endfor %}
-        </ul>
+<div class="container mt-5">
+    <h1>{{ ciudad.name }}</h1>
+    
+    {% if ciudad.descripcion %}
+        <p><strong>Descripción:</strong> {{ ciudad.descripcion }}</p>
+    {% endif %}
+    
+    {% if ciudad.atracciones %}
+        <p><strong>Atracciones turísticas:</strong> {{ ciudad.atracciones }}</p>
+    {% endif %}
+    
+    {% if ciudad.mejor_epoca_para_visitar %}
+        <p><strong>Mejor época para visitar:</strong> {{ ciudad.mejor_epoca_para_visitar }}</p>
+    {% endif %}
+    
+    {% if ciudad.clima_promedio %}
+        <p><strong>Clima promedio:</strong> {{ ciudad.clima_promedio }}</p>
+    {% endif %}
+    
+    <h3>Rutas desde {{ ciudad.name }}:</h3>
+    <ul class="list-group mb-3">
+        {% for ruta in rutas_salida %}
+            <li class="list-group-item">
+                Hacia {{ ruta.end_city.name }} ({{ ruta.distance }} km)
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay rutas de salida.</li>
+        {% endfor %}
+    </ul>
 
-        <h3>Rutas hacia {{ ciudad.name }}:</h3>
-        <ul class="list-group mb-3">
-            {% for ruta in rutas_llegada %}
-                <li class="list-group-item">
-                    Desde {{ ruta.start_city.name }} ({{ ruta.distance }} km)
-                </li>
-            {% empty %}
-                <li class="list-group-item">No hay rutas de llegada.</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <h3>Rutas hacia {{ ciudad.name }}:</h3>
+    <ul class="list-group mb-3">
+        {% for ruta in rutas_llegada %}
+            <li class="list-group-item">
+                Desde {{ ruta.start_city.name }} ({{ ruta.distance }} km)
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay rutas de llegada.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
+

@@ -23,6 +23,7 @@ class City(models.Model):
     # También puede estar vacío y nulo
     clima_promedio = models.CharField(max_length=50, blank=True, null=True, help_text="Clima promedio")
 
+
     # Este método __str__ se usa para representar la ciudad como una cadena, normalmente se usa para las vistas en el panel de administración o en otras representaciones
     def __str__(self):
         # Devuelve el nombre de la ciudad como la representación en texto

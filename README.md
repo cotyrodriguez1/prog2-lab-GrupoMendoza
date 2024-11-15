@@ -1,34 +1,37 @@
-***Informe del Progreso del Proyecto***
+***Informe del Proyecto***
+Este proyecto es una aplicación desarrollada en Django que permite gestionar ciudades y rutas entre ellas. La aplicación incluye funcionalidades como la creación de ciudades, la definición de rutas con distancias específicas y la búsqueda de la ruta más corta entre dos ciudades utilizando el algoritmo de Dijkstra. Este sistema está diseñado como una herramienta de planificación y análisis para usuarios interesados en explorar rutas óptimas entre diversas localidades.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+***Descripción del Trabajo Realizado***
+Gestión de Ciudades y Rutas:
 
-**1. Estado Actual**
+Se implementó un modelo para manejar las ciudades, con atributos como nombre, descripción, atracciones turísticas, clima promedio, y la mejor época para visitar.
+También se creó un modelo para las rutas entre ciudades, que permite establecer distancias y relaciones entre ellas.
 
-Funcionalidades Completas:
+Algoritmo de Dijkstra:
 
-El archivo models.py: Permite agregar ciudades desde el administrador de Django, funcionando correctamente.
+Se desarrolló una función que implementa el algoritmo de Dijkstra para calcular la ruta más corta entre dos ciudades. Esto incluye el uso de estructuras eficientes como un heap para mantener el rendimiento del algoritmo.
 
-El archivo utils.py: La clase Árbol Binario de Búsqueda está completamente comentada y documentada.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+***Análisis de Complejidad Algorítmica de Dijkstra***
 
-**Funcionalidades Sin Problemas:**
+El algoritmo de Dijkstra tiene una complejidad de O(V + E log V), donde:
 
-Estado General: Hasta el momento, todas las funcionalidades implementadas están operativas sin errores reportados.
+V es el número de vértices (ciudades en este caso).
+E es el número de aristas (rutas entre ciudades).
+Esta implementación utiliza un heap como cola de prioridad, lo que mejora la eficiencia en la extracción del nodo de menor distancia y la actualización de distancias para los vecinos. Aunque es eficiente para grafos densos, podría optimizarse para grafos más grandes o dispersos.
 
-**2. Implementaciones Pendientes**
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-La Clase Dijkstra aún no se ha implementado.
+***Estado Actual del Proyecto***
+Funcionamiento:
 
-**3. Planificación de Tareas Pendientes**
+Creación y gestión de ciudades y rutas.
+Cálculo de la ruta más corta utilizando Dijkstra.
 
-Implementación de la Clase Dijkstra:
+Limitaciones y áreas de mejora:
 
-Objetivo: Desarrollar la clase Dijkstra para incorporar algoritmos de búsqueda de rutas óptimas.
+Con nuestro grupo quisimos agregar los puntos extras para que la interfaz sea mas agradable para los usuarios.
+Por motivos personales de las intregrantes , no se pudo implementar. Disculpe profe la demora de la entrega , muchas gracias.
+( Lo esencial esta :) )
 
-Subtareas:
-
-Diseñar la estructura de la clase.
-
-Implementar métodos para el cálculo de rutas.
-
-Integrar la clase con los modelos existentes de City y Route.
-
-Realizar pruebas unitarias para asegurar la precisión y eficiencia del algoritmo.
 

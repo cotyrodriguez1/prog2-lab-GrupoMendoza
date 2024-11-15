@@ -18,6 +18,7 @@ El algoritmo de Dijkstra tiene una complejidad de O(V + E log V), donde:
 
 V es el número de vértices (ciudades en este caso).
 E es el número de aristas (rutas entre ciudades).
+
 Esta implementación utiliza un heap como cola de prioridad, lo que mejora la eficiencia en la extracción del nodo de menor distancia y la actualización de distancias para los vecinos. Aunque es eficiente para grafos densos, podría optimizarse para grafos más grandes o dispersos.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

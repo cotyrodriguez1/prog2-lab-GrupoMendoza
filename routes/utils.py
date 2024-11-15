@@ -2,9 +2,31 @@ import heapq
 from .models import City, Route
 
 def dijkstra(start_city):
-    distances = {start_city:0}
-    previous_cities = {start_city:None}
-    # completar
+    ciudades = City.objects.all()
+    distances = {ciudad: float('inf') for ciudad in ciudades}
+    distances[start_city] = 0
+    previous_cities = {ciudad: None for ciudad in ciudades}
+    
+    visitar = []
+    heapq.heappush(visitar, (0, start_city))
+
+    while visitar != []:
+        distancia_actual, ciudad_actual = heapq.heappop(visitar)
+
+        if distancia_actual > distances[ciudad_actual]:
+            continue
+
+        rutas = Route.objects.filter(start_city=ciudad_actual)
+
+        for ruta in rutas:
+            vecino = ruta.end_city
+            nueva_distancia = distancia_actual + ruta.distance
+
+            if nueva_distancia < distances[vecino]:
+                distances[vecino] = nueva_distancia
+                previous_cities[vecino] = ciudad_actual
+                heapq.heappush(visitar, (nueva_distancia, vecino))
+
     return distances, previous_cities
 
 def get_shortest_path(start_city, end_city):

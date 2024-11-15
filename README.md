@@ -1,7 +1,8 @@
 ***Informe del Proyecto***
 
-
 Este proyecto es una aplicación desarrollada en Django que permite gestionar ciudades y rutas entre ellas. La aplicación incluye funcionalidades como la creación de ciudades, la definición de rutas con distancias específicas y la búsqueda de la ruta más corta entre dos ciudades utilizando el algoritmo de Dijkstra. Este sistema está diseñado como una herramienta de planificación y análisis para usuarios interesados en explorar rutas óptimas entre diversas localidades.
+
+
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ***Descripción del Trabajo Realizado***
 Gestión de Ciudades y Rutas:

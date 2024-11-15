@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\c\prog2-2024-lab2-tfi\gps_simulation\.venv
+set VIRTUAL_ENV=C:\Users\c\prog2-lab-GrupoMendoza\.venv
 
 if not defined PROMPT set PROMPT=$P$G
 

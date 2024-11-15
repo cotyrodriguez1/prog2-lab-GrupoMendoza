@@ -7,3 +7,12 @@ urlpatterns = [
     path('shortest-route/', views.shortest_route, name='shortest_route'),
     path('city/<int:id>/', views.city_detail, name='city_detail'),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path
+from . import views  # Si tienes vistas que definir
+
+
+
+

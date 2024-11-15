@@ -27,6 +27,7 @@ Esta implementación utiliza un heap como cola de prioridad, lo que mejora la ef
 Funcionamiento:
 
 Creación y gestión de ciudades y rutas.
+
 Cálculo de la ruta más corta utilizando Dijkstra.
 
 Limitaciones y áreas de mejora:

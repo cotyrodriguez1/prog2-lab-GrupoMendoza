@@ -46,4 +46,15 @@ class Route(models.Model):
     # Este método __str__ define cómo se representará la ruta como una cadena de texto
     def __str__(self):
         # Devuelve una representación en texto de la ruta como: "Ciudad de origen -> Ciudad de destino (distancia km)"
-        return f"{self.start_city.name} -> {self.end_city.name} ({self.distance} km)", f"{self.end_city.name} -> {self.start_city.name} ({self.distance} km)"
+        return f"{self.start_city.name} -> {self.end_city.name} ({self.distance} km)"
+    
+def obtener_rutas_desde_ciudad(ciudad_destino_id):
+    # Obtener la ciudad de destino por su ID
+    ciudad_destino = City.objects.get(id=ciudad_destino_id)
+    
+    # Obtener todas las rutas que terminan en la ciudad de destino
+    rutas_desde_destino = ciudad_destino.route_end.all()
+    
+    # Imprimir las rutas
+    for ruta in rutas_desde_destino:
+        print(ruta)
